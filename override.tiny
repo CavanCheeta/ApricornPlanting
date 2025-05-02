@@ -1,0 +1,3 @@
+tiny	2	0	intermediary	named
+c	com/cobblemon/mod/common/client/gui/pc/StorageSlot	com/cobblemon/mod/common/client/gui/pc/StorageSlot
+	m	isSelected  ()Z	isSelected

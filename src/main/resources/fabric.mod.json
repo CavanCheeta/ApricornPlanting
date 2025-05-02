@@ -1,0 +1,27 @@
+{
+	"schemaVersion": 1,
+	"id": "apricornplanting",
+	"version": "${version}",
+	"name": "ApricornPlanting",
+	"description": "Planting Apricorns on Apricorn Trees!",
+	"authors": [
+		"Mashi"
+	],
+	"contact": {
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/apricornplanting/icon.png",
+	"environment": "server",
+	"entrypoints": {
+		"main": [
+			"me.mashi.apricornplanting.ApricornPlanting"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*",
+		"cobblemon": ">=1.6.1"
+	}
+}
