@@ -42,26 +42,19 @@ public class ApricornPlanting implements ModInitializer {
 	}
 
 	public ActionResult handleBlockClick(PlayerEntity playerEntity, World world, Hand hand, BlockHitResult bhr) {
-		// Checks for if world is on the clientside,
-		// if the player is using their offhand,
-		// if the player is trying to plant on a block that is not a leaf,
-		// if the player is trying to plant on a block that is not an Apricorn,
-		// or if the block the player is trying to plant on is not air.
 		BlockPos targetedBlockPos = bhr.getBlockPos().add(bhr.getSide().getVector());
 		ItemStack playerHandItemStack = playerEntity.getStackInHand(hand);
 
 		if (world.isClient
-				|| !world.getGameRules().getBoolean(APRICORN_PLANTING_ON_ALL_LEAVES)
 				|| !world.getBlockState(bhr.getBlockPos()).isIn(BlockTags.LEAVES)
 				|| !(playerEntity.getStackInHand(hand).getItem() instanceof ApricornItem)
 				|| !world.getBlockState(targetedBlockPos).isAir()
 		) {
 			return ActionResult.PASS;
 		}
+		boolean ApricornPlantingOnAllTrees = world.getGameRules().getBoolean(APRICORN_PLANTING_ON_ALL_LEAVES);
 
-
-		if (playerHandItemStack.isIn(CobblemonItemTags.APRICORNS)
-				&& world.getBlockState(bhr.getBlockPos()).isIn(CobblemonBlockTags.APRICORN_LEAVES)) {
+		if (playerHandItemStack.isIn(CobblemonItemTags.APRICORNS) && world.getBlockState(bhr.getBlockPos()).isIn( ApricornPlantingOnAllTrees ? BlockTags.LEAVES : CobblemonBlockTags.APRICORN_LEAVES)) {
 			if (!(playerHandItemStack.getItem() instanceof ApricornItem)) {
 				throw new RuntimeException("The Apricorn you've tried to plant is not derived from ApricornItemClass. Please check your config or contact the mod author.");
 			}
